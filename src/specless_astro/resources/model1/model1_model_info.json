@@ -1,0 +1,87 @@
+{
+    "task": "Elliptical vs Spiral",
+    "class_mapping": {
+        "0": "Elliptical",
+        "1": "Spiral"
+    },
+    "primary_model": "XGBoost",
+    "comparison_model": "Random Forest",
+    "selection_metric": "balanced_accuracy",
+    "train_size": 142212,
+    "test_size": 35554,
+    "train_class_distribution": {
+        "Elliptical": 51553,
+        "Spiral": 90659
+    },
+    "test_class_distribution": {
+        "Elliptical": 12888,
+        "Spiral": 22666
+    },
+    "n_features": 28,
+    "xgboost_parameters": {
+        "objective": "binary:logistic",
+        "eval_metric": "logloss",
+        "n_estimators": 300,
+        "max_depth": 6,
+        "learning_rate": 0.1,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "scale_pos_weight": 0.5686473488567048,
+        "random_state": 42
+    },
+    "random_forest_parameters": {
+        "n_estimators": 300,
+        "class_weight": "balanced",
+        "random_state": 42
+    },
+    "final_test_results": {
+        "Random Forest": {
+            "accuracy": 0.936294,
+            "balanced_accuracy": 0.930805,
+            "precision_macro": 0.931283,
+            "f1_macro": 0.931043,
+            "roc_auc": 0.980704,
+            "elliptical_recall": 0.910847,
+            "spiral_recall": 0.950763
+        },
+        "XGBoost": {
+            "accuracy": 0.937475,
+            "balanced_accuracy": 0.938761,
+            "precision_macro": 0.928644,
+            "f1_macro": 0.933181,
+            "roc_auc": 0.982557,
+            "elliptical_recall": 0.943436,
+            "spiral_recall": 0.934086
+        }
+    },
+    "features": [
+        "u",
+        "g",
+        "r",
+        "i",
+        "z",
+        "W1",
+        "W2",
+        "u_g",
+        "u_r",
+        "u_i",
+        "u_z",
+        "u_W1",
+        "u_W2",
+        "g_r",
+        "g_i",
+        "g_z",
+        "g_W1",
+        "g_W2",
+        "r_i",
+        "r_z",
+        "r_W1",
+        "r_W2",
+        "i_z",
+        "i_W1",
+        "i_W2",
+        "z_W1",
+        "z_W2",
+        "W1_W2"
+    ]
+}
