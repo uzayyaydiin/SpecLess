@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "specless-astro"
-version = "0.1.0"
+version = "0.2.0"
 description = "SpecLess: photometry-based machine learning tools for galaxy classification"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,5 +23,6 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 specless_astro = [
-    "resources/model1/*.json"
+    "resources/model1/*.json",
+    "resources/model2/*.json"
 ]
