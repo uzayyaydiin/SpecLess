@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/uzayyaydiin/SpecLess/main/docs/assets/specless-logo.png" width="420" alt="SpecLess logo">
+</p>
+
 # SpecLess
 
 **SpecLess** is an open-source Python framework for photometry-based machine-learning classification of galaxies.
