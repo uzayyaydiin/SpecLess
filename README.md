@@ -38,11 +38,11 @@ SpecLess was developed and evaluated using photometric data from multiple astron
 
 Current development and validation work includes:
 
-- **SDSS** — optical photometry and spectroscopic ground-truth samples
-- **AllWISE** — mid-infrared photometry used by the pretrained classifiers
-- **KiDS** — external optical survey validation
-- **VIKING** — near-infrared photometry used together with KiDS in cross-survey validation
-- **DESI Legacy Surveys** — external survey testing and cross-survey portability analysis
+- **SDSS**  optical photometry and spectroscopic ground-truth samples
+- **AllWISE**  mid-infrared photometry used by the pretrained classifiers
+- **KiDS**  external optical survey validation
+- **VIKING**  near-infrared photometry used together with KiDS in cross-survey validation
+- **DESI Legacy Surveys**  external survey testing and cross-survey portability analysis
 
 SpecLess is designed for photometry-based galaxy classification across heterogeneous survey data, with scalability toward upcoming large imaging datasets such as **LSST**.
 
