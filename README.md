@@ -60,9 +60,6 @@ print(
 
 ---
 
-### 3. Açık kaynak lisansını ekleyelim
-
-Ben SpecLess için **BSD 3-Clause** seçiyorum. Bilimsel Python projeleri için gayet uygun, permissive bir lisans: insanlar kullanabilir, değiştirebilir ve katkı yapabilir ama telif ve lisans bildirimin korunması gerekir.
 
 ```bash
 cat > LICENSE <<'EOF'
