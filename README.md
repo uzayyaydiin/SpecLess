@@ -2,49 +2,97 @@
   <img src="https://raw.githubusercontent.com/uzayyaydiin/SpecLess/main/docs/assets/specless-logo.png" width="420" alt="SpecLess logo">
 </p>
 
-# SpecLess
+<h1 align="center">SpecLess</h1>
 
-**SpecLess** is an open-source Python framework for photometry-based machine-learning classification of galaxies.
+<p align="center">
+  <strong>Photometry Based Galaxy Classification</strong>
+</p>
 
-The project is designed to provide reusable pretrained models, photometric feature-engineering tools, survey-validation workflows, and a collaborative framework for galaxy classification without requiring spectroscopy at inference time.
+<p align="center">
+  <a href="https://pypi.org/project/specless-astro/">
+    <img src="https://img.shields.io/pypi/v/specless-astro" alt="PyPI">
+  </a>
+  <a href="https://github.com/uzayyaydiin/SpecLess/actions/workflows/tests.yml">
+    <img src="https://github.com/uzayyaydiin/SpecLess/actions/workflows/tests.yml/badge.svg" alt="Tests">
+  </a>
+  <img src="https://img.shields.io/pypi/pyversions/specless-astro" alt="Python versions">
+  <img src="https://img.shields.io/github/license/uzayyaydiin/SpecLess" alt="License">
+</p>
 
-## Current status
+## Overview
 
-SpecLess is currently under active development.
+**SpecLess** is an open-source Python package for photometry-based machine-learning classification of galaxies.
 
-### Model 1: Galaxy Morphology
+The package provides pretrained classifiers and automated photometric feature construction for galaxy classification without requiring spectroscopy at inference time.
 
-Binary classification:
+The current release contains two classification models:
+
+- **Model 1:** Elliptical and Spiral galaxy morphology
+- **Model 2:** Seyfert, Starburst, Star-forming, and LINER activity classification
+
+The package is distributed on PyPI as `specless-astro` and imported in Python as `specless_astro`.
+
+## Installation
+
+Install the public release from PyPI:
+
+```bash
+pip install specless-astro
+```
+
+The two classifiers can then be imported with:
+
+```python
+from specless_astro import MorphologyClassifier, ActivityClassifier
+```
+
+## Model 1: Galaxy Morphology
+
+Model 1 performs binary morphological classification:
 
 - Elliptical
 - Spiral
 
-Primary classifier:
+The pretrained classifier uses XGBoost.
 
-- XGBoost
+### Required photometry
 
-Required photometric bands:
+Seven photometric bands are required:
 
 - SDSS `u`, `g`, `r`, `i`, `z`
 - WISE `W1`, `W2`
 
-SpecLess automatically constructs the 21 colour features used by the pretrained classifier, producing a total of 28 photometric features.
+SpecLess automatically constructs 21 colour features from the seven input magnitudes, producing a total of 28 model features.
 
-The current Model 1 classifier was trained on 142,212 galaxies and evaluated on an independent test sample of 35,554 galaxies.
+### Data
 
-## Development installation
+| Sample | Number of galaxies |
+|---|---:|
+| Training sample | 142,212 |
+| Independent test sample | 35,554 |
+| Elliptical galaxies in test sample | 12,888 |
+| Spiral galaxies in test sample | 22,666 |
 
-Clone the repository and install in editable mode:
+### Performance
 
-```bash
-pip install -e .
+| Metric | Score |
+|---|---:|
+| Accuracy | 0.9375 |
+| Balanced accuracy | 0.9388 |
+| Macro F1 | 0.9332 |
+| ROC AUC | 0.9826 |
+| Elliptical recall | 0.9434 |
+| Spiral recall | 0.9341 |
+
+### Example
+
+```python
 import pandas as pd
 from specless_astro import MorphologyClassifier
 
 catalog = pd.read_csv("catalog.csv")
 
 model = MorphologyClassifier()
-
 result = model.predict(catalog)
 
 print(
@@ -57,39 +105,145 @@ print(
         ]
     ]
 )
+```
 
----
+## Model 2: Galaxy Activity Classification
 
+Model 2 performs four-class activity classification:
 
-```bash
-cat > LICENSE <<'EOF'
-BSD 3-Clause License
+- Seyfert
+- Starburst
+- Star-forming
+- LINER
 
-Copyright (c) 2026, Uzay Aydın
-All rights reserved.
+The pretrained classifier uses XGBoost.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+### Required photometry
 
-1. Redistributions of source code must retain the above copyright notice,
-   this list of conditions and the following disclaimer.
+Eight photometric bands are required:
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+- SDSS `u`, `g`, `r`, `i`, `z`
+- WISE `W1`, `W2`, `W3`
 
-3. Neither the name of the copyright holder nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
+SpecLess automatically constructs 28 colour features from the eight input magnitudes, producing a total of 36 model features.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
+### Data
+
+The spectroscopically labelled parent sample contains 133,886 galaxies.
+
+The final SDSS and WISE photometric sample contains 84,652 galaxies:
+
+| Class | Number of galaxies |
+|---|---:|
+| Star-forming | 37,518 |
+| Starburst | 36,924 |
+| Seyfert | 5,990 |
+| LINER | 4,220 |
+
+The independent test sample contains 16,931 galaxies.
+
+### Performance
+
+| Metric | Score |
+|---|---:|
+| Accuracy | 0.8217 |
+| Balanced accuracy | 0.7865 |
+| Macro F1 | 0.7637 |
+| Macro ROC AUC | 0.9572 |
+
+### Example
+
+```python
+import pandas as pd
+from specless_astro import ActivityClassifier
+
+catalog = pd.read_csv("catalog.csv")
+
+model = ActivityClassifier()
+result = model.predict(catalog)
+
+print(
+    result[
+        [
+            "specless_label",
+            "p_seyfert",
+            "p_starburst",
+            "p_starforming",
+            "p_liner",
+            "confidence",
+        ]
+    ]
+)
+```
+
+## Cross-Survey Validation
+
+The repository contains validation products associated with external and cross-survey experiments.
+
+These include:
+
+- KiDS and VIKING validation products
+- SDSS and WISE to KiDS and VIKING transfer experiments
+- feature-importance products
+- SHAP-based interpretation products
+
+For Model 2, the SDSS and WISE trained XGBoost classifier obtained the following results in the KiDS and VIKING external validation experiment:
+
+| Metric | Score |
+|---|---:|
+| Accuracy | 0.7935 |
+| Balanced accuracy | 0.7586 |
+| Macro F1 | 0.7528 |
+| Macro ROC AUC | 0.9533 |
+
+## Repository Structure
+
+```text
+SpecLess/
+├── src/
+│   └── specless_astro/
+│       ├── morphology/
+│       ├── activity/
+│       └── resources/
+├── tests/
+├── validation/
+│   ├── model1/
+│   └── model2/
+├── docs/
+│   └── assets/
+├── pyproject.toml
+├── LICENSE
+└── README.md
+```
+
+## Testing
+
+The repository contains regression tests for both classifiers, photometric feature construction, required input handling, model metadata, and frozen reference predictions.
+
+Tests are also run through GitHub Actions.
+
+## Data and Reproducibility
+
+Large survey catalogues used during model development are not distributed directly with the Python package.
+
+The public repository contains the pretrained model files, feature definitions, model metadata, compact reference samples, regression tests, validation metrics, cross-survey results, and interpretation products required for software use and verification.
+
+## Documentation
+
+Additional model and validation documentation is available in the [`docs`](docs) and [`validation`](validation) directories.
+
+## Citation
+
+The formal citation for SpecLess will be added following publication of the associated scientific paper.
+
+## Author
+
+**Uzay Aydın**  
+Astronomy and Space Sciences  
+Erciyes University, Türkiye
+
+## License
+
+SpecLess is distributed under the **BSD 3-Clause License**.
+
+See [`LICENSE`](LICENSE) for the full license text.
