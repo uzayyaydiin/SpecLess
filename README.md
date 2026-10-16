@@ -253,6 +253,7 @@ The formal citation for SpecLess will be added following publication of the asso
 ## Author
 
 **Uzay Aydın**  
+**Prof. Dr. Mehmet Tanrıver**
 Astronomy and Space Sciences  
 Erciyes University, Türkiye
 
