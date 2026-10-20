@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "specless-astro"
-version = "0.2.1"
-description = "SpecLess: photometry-based machine learning tools for galaxy classification"
+version = "0.3.0"
+description = "SpecLess: multi-survey photometry-based machine learning tools for galaxy classification"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "BSD-3-Clause"
@@ -25,6 +25,8 @@ keywords = [
     "sdss",
     "wise",
     "kids",
+    "viking",
+    "desi",
     "xgboost"
 ]
 
@@ -56,6 +58,8 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 specless_astro = [
-    "resources/model1/*.json",
-    "resources/model2/*.json"
+    "resources/morphology/sdss/*.json",
+    "resources/morphology/kids/*.json",
+    "resources/activity/sdss/*.json",
+    "resources/activity/desi/*.json"
 ]

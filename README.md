@@ -263,3 +263,60 @@ Erciyes University, Türkiye
 SpecLess is distributed under the **BSD 3-Clause License**.
 
 See [`LICENSE`](LICENSE) for the full license text.
+
+<!-- SPECLESS-MULTISURVEY-START -->
+
+## Multi-survey classification
+
+SpecLess 0.3.0 provides survey-specific photometric machine-learning models for galaxy morphology and activity classification.
+
+### Morphology classification
+
+Supported photometric domains:
+
+* `sdss`: SDSS `u, g, r, i, z` + AllWISE `W1, W2`
+* `kids`: KiDS+VIKING `u, g, r, i, Z, Y, J, H, Ks`
+
+```python
+from specless_astro import MorphologyClassifier
+
+sdss_morphology = MorphologyClassifier(survey="sdss")
+kids_morphology = MorphologyClassifier(survey="kids")
+```
+
+### Activity classification
+
+Supported photometric domains:
+
+* `sdss`: SDSS `u, g, r, i, z` + AllWISE `W1, W2, W3`
+* `desi`: DESI Legacy Surveys `g, r, z, W1, W2, W3` magnitudes and their magnitude uncertainties
+
+```python
+from specless_astro import ActivityClassifier
+
+sdss_activity = ActivityClassifier(survey="sdss")
+desi_activity = ActivityClassifier(survey="desi")
+```
+
+### Inspect model requirements
+
+```python
+model = MorphologyClassifier(survey="kids")
+print(model.required_columns)
+print(model.info())
+
+model = ActivityClassifier(survey="desi")
+print(model.required_columns)
+print(model.info())
+```
+
+### Available survey models
+
+```python
+print(MorphologyClassifier.available_surveys())
+print(ActivityClassifier.available_surveys())
+```
+
+The DESI activity classifier expects the same prepared photometric representation used during model development. Catalogue cross-matching, source-quality selection, flux-to-magnitude conversion and extinction correction remain upstream operations.
+
+<!-- SPECLESS-MULTISURVEY-END -->

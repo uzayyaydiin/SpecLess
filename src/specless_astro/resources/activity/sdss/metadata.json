@@ -101,5 +101,28 @@
     "balanced_accuracy": 0.7865243975574545,
     "macro_f1": 0.7637061003679557,
     "macro_roc_auc": 0.9571918660268934
-  }
+  },
+  "specless_release": "0.3.0",
+  "component": "activity",
+  "survey_key": "sdss",
+  "survey": "SDSS+AllWISE",
+  "model_api": "booster_multiclass",
+  "class_mapping": {
+    "0": "SEYFERT",
+    "1": "STARBURST",
+    "2": "STARFORMING",
+    "3": "LINER"
+  },
+  "required_columns": [
+    "u",
+    "g",
+    "r",
+    "i",
+    "z",
+    "W1",
+    "W2",
+    "W3"
+  ],
+  "source_model_sha256": "cc4278e14dc1f3fc10dbb73f01737b41dad9b2e5f3cc2ceac6340aead162e52a",
+  "distributed_model_sha256": "cc4278e14dc1f3fc10dbb73f01737b41dad9b2e5f3cc2ceac6340aead162e52a"
 }
