@@ -246,9 +246,30 @@ The public repository contains the pretrained model files, feature definitions, 
 
 Additional model and validation documentation is available in the [`docs`](docs) and [`validation`](validation) directories.
 
+
 ## Citation
 
-The formal citation for SpecLess will be added following publication of the associated scientific paper.
+If you use SpecLess in your research, please cite the following paper:
+
+**Aydin, U., & Tanriver, M. (2026).**  
+*SpecLess: A Multi Survey Python Package for Machine Learning Classification of Galaxy Morphology and Activity from Photometry.*  
+arXiv:2610.31545 [astro-ph.GA].
+
+**Paper:** https://arxiv.org/abs/2610.31545
+
+### BibTeX
+
+
+@misc{aydin2026specless,
+  title = {SpecLess: A Multi Survey Python Package for Machine Learning Classification of Galaxy Morphology and Activity from Photometry},
+  author = {Aydin, Uzay and Tanriver, Mehmet},
+  year = {2026},
+  eprint = {2610.31545},
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.GA},
+  url = {https://arxiv.org/abs/2610.31545}
+}
+
 
 ## Author
 
