@@ -58,6 +58,10 @@ To verify the installed package version:
 ```bash
 python -m pip show specless-astro
 ```
+To verify the installed package version:
+
+```bash
+python -m pip show specless-astro
 
 The two classifiers can then be imported with:
 
