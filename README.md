@@ -220,6 +220,7 @@ SpecLess/
 │       ├── activity/
 │       └── resources/
 ├── tests/
+├── examples/
 ├── validation/
 │   ├── model1/
 │   └── model2/
