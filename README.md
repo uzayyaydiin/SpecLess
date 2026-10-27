@@ -53,7 +53,7 @@ Install the public release from PyPI:
 ```bash
 pip install specless-astro
 ```
-To verify the installed package version:
+To verify the installed package version: 
 
 ```bash
 python -m pip show specless-astro
